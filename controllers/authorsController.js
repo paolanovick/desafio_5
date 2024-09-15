@@ -1,21 +1,14 @@
-// controllers/authorsController.js
-
-// Simulación de base de datos
-let authors = [
-  { id: 1, name: "Antoine de Saint-Exupéry", birthYear: 1900 },
-  { id: 2, name: "Horacio Quiroga", birthYear: 1878 },
-  // Agrega más autores según sea necesario
-];
+const authorModel = require("../models/authorModel");
 
 // Obtener todos los autores
 exports.getAllAuthors = (req, res) => {
-  res.status(200).json(authors);
+  res.status(200).json(authorModel.getAllAuthors());
 };
 
 // Obtener un autor por ID
 exports.getAuthorById = (req, res) => {
   const authorId = parseInt(req.params.id, 10);
-  const author = authors.find((a) => a.id === authorId);
+  const author = authorModel.getAuthorById(authorId);
 
   if (author) {
     res.status(200).json(author);
@@ -27,19 +20,17 @@ exports.getAuthorById = (req, res) => {
 // Crear un nuevo autor
 exports.createAuthor = (req, res) => {
   const newAuthor = req.body;
-  newAuthor.id = authors.length ? authors[authors.length - 1].id + 1 : 1;
-  authors.push(newAuthor);
-  res.status(201).json(newAuthor);
+  const createdAuthor = authorModel.createAuthor(newAuthor);
+  res.status(201).json(createdAuthor);
 };
 
 // Actualizar un autor existente
 exports.updateAuthor = (req, res) => {
   const authorId = parseInt(req.params.id, 10);
-  const index = authors.findIndex((a) => a.id === authorId);
+  const updatedAuthor = authorModel.updateAuthor(authorId, req.body);
 
-  if (index !== -1) {
-    authors[index] = { ...authors[index], ...req.body };
-    res.status(200).json(authors[index]);
+  if (updatedAuthor) {
+    res.status(200).json(updatedAuthor);
   } else {
     res.status(404).json({ message: "Author not found" });
   }
@@ -48,10 +39,9 @@ exports.updateAuthor = (req, res) => {
 // Eliminar un autor
 exports.deleteAuthor = (req, res) => {
   const authorId = parseInt(req.params.id, 10);
-  const index = authors.findIndex((a) => a.id === authorId);
+  const deleted = authorModel.deleteAuthor(authorId);
 
-  if (index !== -1) {
-    authors.splice(index, 1);
+  if (deleted) {
     res.status(200).json({ message: "Author deleted" });
   } else {
     res.status(404).json({ message: "Author not found" });
