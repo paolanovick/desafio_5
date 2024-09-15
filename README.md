@@ -38,3 +38,15 @@ Este proyecto sigue el patrón de diseño MVC para gestionar una colección de l
 ├── server.js
 └── README.md
 
+
+- **`## Configuración del Proyecto`**: Es un subtítulo que explica cómo configurar el proyecto.
+- **Pasos**: Proporciona los pasos necesarios para empezar a trabajar con el proyecto. En este caso, el primer paso es clonar el repositorio desde GitHub usando `git clone`. `<URL_DEL_REPOSITORIO>` es un marcador de posición donde deberás reemplazarlo con la URL real del repositorio en GitHub.
+
+### **Uso de Markdown en README.md**
+
+- **Encabezados**: Usan `#`, `##`, etc., para crear títulos y subtítulos.
+- **Listas**: Usan `-` o `*` para listas sin numerar, y `1.`, `2.`, etc., para listas numeradas.
+- **Código**: Los bloques de código se colocan entre triple acento grave (```).
+
+Este archivo `README.md` proporciona una visión general de tu proyecto y cómo configurarlo. Es una parte importante de la documentación del proyecto, ya que ayuda a otros (y a ti mismo) a entender el propósito y la estructura del proyecto, así como a configurarlo correctamente.
+
