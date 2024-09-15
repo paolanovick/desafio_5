@@ -9,6 +9,11 @@ const authorsRoutes = require("./routes/authorsRoutes");
 
 // Middleware
 app.use(express.json());
+// Definir una ruta para la raíz
+app.get('/', (req, res) => {
+  res.send('Bienvenidos a la API de Books y Authors!');
+});
+
 
 // Usar rutas
 app.use("/books", booksRoutes);
